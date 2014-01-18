@@ -1,0 +1,75 @@
+<head>
+	<title>Clicker Wars</title>
+</head>
+
+<body>
+	<div id="outer">
+		{{> playerInfo}}
+		{{> populate}}
+		<div class="row">
+			<div class="col-lg-6">
+				Production:
+				{{> production}}
+
+				Military:
+				{{> military}}
+			</div>
+			<div class="col-lg-5">
+				Stats:
+				{{> stats}}
+			</div>
+		</div>
+	</div>
+</body>
+
+<template name="playerInfo">
+	<h2>Welcome {{loginButtons}}</h2>
+	<h3>Unemployment: {{user.robots}} robots</h3>
+	<h3>Industrial output: {{user.rate}} robots / second</h3>
+	<h4>Your base is located at grid [{{user.x}}, {{user.y}}}]</h4>
+
+</template>
+
+<template name="populate">
+	<div>
+		<button class="populate">
+			Create robot
+		</button>
+	</div>
+</template>
+
+<template name="production">
+	{{#each display}}
+	<div>
+		<button class="produce" id="{{name}}">
+			Build {{name}}
+		</button>
+		(Employs {{cost}} robots, Produces {{increase}} robots/second)
+	</div>
+	{{/each}}
+</template>
+
+<template name="military">
+	{{#each display}}
+	<div>
+		<button class="produce" id="{{name}}">
+			Create {{name}}
+		</button>
+		(Upkeep: {{cost}} robots)
+	</div>
+	{{/each}}
+</template>
+
+<template name="stats">
+	{{#each key_value prod}}
+	<div>
+		{{key}} : {{value}}
+	</div>
+	{{/each}}
+
+	{{#each key_value mil}}
+	<div>
+		{{key}} : {{value}}
+	</div>
+	{{/each}}
+</template>
